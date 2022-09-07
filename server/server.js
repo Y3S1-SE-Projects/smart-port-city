@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-//const cookieParser = require("cookie-parser");
 require('dotenv').config();
 
 const DB_connect = require("./utils/database.connection");
@@ -12,7 +11,6 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-//app.use(cookieParser());
 
 // Start the Server
 app.listen(PORT, () => {
@@ -23,4 +21,4 @@ app.listen(PORT, () => {
 });
 
 //main routes
-// app.use("/users", require("./src/routes/Users.route"));
+ app.use("/food", require("./routes/food.route"));
