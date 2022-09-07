@@ -22,3 +22,4 @@ app.listen(PORT, () => {
 
 //main routes
  app.use("/food", require("./routes/food.route"));
+ app.use("/upload", require("./routes/FileUpload.route"));
