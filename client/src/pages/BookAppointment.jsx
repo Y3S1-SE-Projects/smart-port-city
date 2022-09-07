@@ -15,10 +15,24 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import {useState} from "react";
+import moment from "moment";
+import {AccountCircle} from "@mui/icons-material";
 
-const theme = createTheme();
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#033E8A'
+        },
+    background:{
+            default:'#ECFBFF'
+    }
+    },
+});
 
 export default function BookAppointment() {
+
+     const today = moment().format('YYYY-MM-DDTkk:mm');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -38,7 +52,7 @@ export default function BookAppointment() {
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
                 >
                     <Avatar sx={{m: 1, bgcolor: '#033E8A'}}>
@@ -49,13 +63,18 @@ export default function BookAppointment() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                                <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                <TextField id="input-with-sx" label="With sx" variant="standard" />
+                            </Box>
+                            <Grid item xs={12}  sx={{mt: 3}}>
                                 <TextField
                                     name="patientName"
                                     required
                                     fullWidth
                                     id="patientName"
                                     label="Patient Name"
+                                    variant="filled"
                                     autoFocus
                                 />
                             </Grid>
@@ -66,7 +85,7 @@ export default function BookAppointment() {
                                     fullWidth
                                     id="mobileNumber"
                                     label="Mobile Number"
-
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -76,6 +95,7 @@ export default function BookAppointment() {
                                     id="email"
                                     label="Email Address"
                                     name="email"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -86,6 +106,7 @@ export default function BookAppointment() {
                                     label="Age"
                                     type="number"
                                     id="age"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -110,6 +131,22 @@ export default function BookAppointment() {
                                         }}/>} label="Male"/>
                                     </RadioGroup>
                                 </FormControl>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    id="datetime-local"
+                                    label="Appointment Date & Time"
+                                    type="datetime-local"
+                                    variant="filled"
+                                    //defaultValue="2017-05-24T10:30"
+                                    sx={{ width: 250 }}
+                                    inputProps={{
+                                        min:today
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
                             </Grid>
                         </Grid>
 
