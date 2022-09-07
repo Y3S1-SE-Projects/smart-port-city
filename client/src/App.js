@@ -1,22 +1,22 @@
+import * as React from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+
+import ChannelingDoctor from "./pages/ChannelingDoctor";
+import BookAppointment from "./pages/BookAppointment";
+import AppointmentList from "./pages/AppointmentList";
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+       <Routes>
+
+         <Route path="/abcd" element={<ChannelingDoctor/>}/>
+         <Route path="/123" element={<BookAppointment/>}/>
+         <Route path="/321" element={<AppointmentList/>}/>
+
+       </Routes>
+    </BrowserRouter>
   );
 }
 
