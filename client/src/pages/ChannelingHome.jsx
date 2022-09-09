@@ -75,6 +75,7 @@ export default function ChannelingHome() {
 
             <Grid direction='row' container justifyContent="center">
                 <Box textAlign="center"  sx={{mr: 3}}>
+                    <Link to={`/channeling-doctor`} textDecoration='none'>
                     <Button
                         type="submit"
                         width="60%"
@@ -84,9 +85,11 @@ export default function ChannelingHome() {
                     >
                         View Doctors
                     </Button>
+                    </Link>
                 </Box>
 
             <Box textAlign="center">
+                <Link to={`/channeling-doctor`} textDecoration='none'>
             <Button
                 type="submit"
                 width="60%"
@@ -96,6 +99,7 @@ export default function ChannelingHome() {
             >
                 Book Now
             </Button>
+                </Link>
             </Box>
             </Grid>
 
