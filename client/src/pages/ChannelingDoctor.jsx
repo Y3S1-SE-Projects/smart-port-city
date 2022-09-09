@@ -22,6 +22,7 @@ import {SERVER_URL} from "../utils/config";
 import { Link } from "react-router-dom";
 
 import MenuIcon from '@mui/icons-material/Menu';
+import DocIcon from "../icons/DocIcon";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -56,7 +57,7 @@ export default function ChannelingDoctor(){
         <CssBaseline />
         <AppBar position="relative">
             <Toolbar>
-                <CameraIcon sx={{ mr: 2 }} />
+                <DocIcon sx={{ mr: 2 }} />
                 <Typography variant="h6" color="inherit" noWrap>
                     Doctor Channeling
                 </Typography>
