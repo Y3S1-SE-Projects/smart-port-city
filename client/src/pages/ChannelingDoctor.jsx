@@ -17,7 +17,8 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {TextField} from "@mui/material";
 import {AccountCircle} from "@mui/icons-material";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -67,6 +68,7 @@ export default function ChannelingDoctor(){
                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                         Discover the best doctors available in the smart port city and make an appointment right now as preferred.
                     </Typography>
+
                     <Box sx={{ display: 'flex' }}>
                         <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                         <TextField id="input-with-sx" label="With sx" variant="standard" />

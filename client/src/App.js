@@ -5,8 +5,10 @@ import {ToastContainer} from "react-toastify";
 import ChannelingDoctor from "./pages/ChannelingDoctor";
 import BookAppointment from "./pages/BookAppointment";
 import AppointmentList from "./pages/AppointmentList";
+
 import FoodMenu from "./pages/FoodMenu";
 import AddFood from "./pages/AddFood";
+import ChannelingHome from "./pages/ChannelingHome";
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
          <Route path="/abcd" element={<ChannelingDoctor/>}/>
          <Route path="/123" element={<BookAppointment/>}/>
          <Route path="/321" element={<AppointmentList/>}/>
+         <Route path="/456" element={<ChannelingHome/>}/>
 
          <Route path="/foodmenu" element={<FoodMenu/>}/>
          <Route path="/addfood" element={<AddFood/>}/>
