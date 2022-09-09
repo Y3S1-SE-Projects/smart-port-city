@@ -1,4 +1,4 @@
-import * as React from "react";
+import React,{useEffect, useState} from "react";
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
@@ -13,12 +13,15 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {TextField} from "@mui/material";
+import {IconButton, InputBase, Paper, TextField} from "@mui/material";
 import {AccountCircle} from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
+import axios from "axios";
+import {SERVER_URL} from "../utils/config";
+import { Link } from "react-router-dom";
+
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -34,6 +37,19 @@ const theme = createTheme({
 });
 
 export default function ChannelingDoctor(){
+
+    const [doctors,setDoctors]=useState([]);
+
+
+    const getData = () =>{
+        axios.get(`${SERVER_URL}/doctor`).then(res =>{
+            setDoctors(res.data);
+            console.log(res.data)
+        })
+    }
+    useEffect(()=>{getData()},[])
+
+
     return(
 
     <ThemeProvider theme={theme}>
@@ -69,17 +85,28 @@ export default function ChannelingDoctor(){
                         Discover the best doctors available in the smart port city and make an appointment right now as preferred.
                     </Typography>
 
-                    <Box sx={{ display: 'flex' }}>
-                        <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField id="input-with-sx" label="With sx" variant="standard" />
-                    </Box>
+                        <Paper
+                            component="form"
+                            sx={{ p: '4px 10px', mt:5, display: 'flex', align:"center", alignItems: 'center', width: 500 }}>
+                            {/*<IconButton sx={{ p: '10px' }} aria-label="menu">*/}
+                            {/*    <MenuIcon />*/}
+                            {/*</IconButton>*/}
+                            <InputBase
+                                sx={{ ml: 1, flex: 1 }}
+                                placeholder="Search"
+                                inputProps={{ 'aria-label': 'search google maps' }}
+                            />
+                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search" >
+                                <SearchIcon color="primary" />
+                            </IconButton>
+                        </Paper>
                 </Container>
             </Box>
             <Container sx={{ py: 8, bgcolor: '#ECFBFF'}} maxWidth="md" >
                 {/* End hero unit */}
                 <Grid container spacing={4}>
-                    {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={6} md={4}>
+                    {doctors.map((doctor) => (
+                        <Grid item key={doctor} xs={12} sm={6} md={4}>
                             <Card
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
@@ -89,20 +116,19 @@ export default function ChannelingDoctor(){
                                     //     // 16:9
                                     //     pt: '56.25%',
                                     // }}
-                                    image="https://source.unsplash.com/random"
+                                    image={doctor.image}
                                     alt="random"
                                 />
                                 <CardContent sx={{ flexGrow: 1 }}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Dr.Ruby Perrin
+                                        {doctor.name}
                                     </Typography>
                                     <Typography>
-                                        MDS - Periodontology and Oral Implantology, BDS
+                                        {doctor.description}
                                     </Typography>
                                 </CardContent>
-
                                 <CardActions sx={{ justifyContent:"right" , mr: 2, mb: 2}}>
-                                    <Button size="small" variant="contained">Book Now</Button>
+                                    <Link to={`/book-appointment/${doctor._id}`}><Button size="small" variant="contained">Book Now</Button></Link>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -111,20 +137,20 @@ export default function ChannelingDoctor(){
             </Container>
         </main>
         {/* Footer */}
-        <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-            <Typography variant="h6" align="center" gutterBottom>
-                Footer
-            </Typography>
-            <Typography
-                variant="subtitle1"
-                align="center"
-                color="text.secondary"
-                component="p"
-            >
-                Something here to give the footer a purpose!
-            </Typography>
+        {/*<Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">*/}
+        {/*    <Typography variant="h6" align="center" gutterBottom>*/}
+        {/*        Footer*/}
+        {/*    </Typography>*/}
+        {/*    <Typography*/}
+        {/*        variant="subtitle1"*/}
+        {/*        align="center"*/}
+        {/*        color="text.secondary"*/}
+        {/*        component="p"*/}
+        {/*    >*/}
+        {/*        Something here to give the footer a purpose!*/}
+        {/*    </Typography>*/}
 
-        </Box>
+        {/*</Box>*/}
         {/* End footer */}
     </ThemeProvider>
     );
