@@ -16,10 +16,10 @@ function App() {
     <BrowserRouter>
        <Routes>
 
-         <Route path="/abcd" element={<ChannelingDoctor/>}/>
-         <Route path="/123" element={<BookAppointment/>}/>
-         <Route path="/321" element={<AppointmentList/>}/>
-         <Route path="/456" element={<ChannelingHome/>}/>
+         <Route path="/channeling-doctor" element={<ChannelingDoctor/>}/>
+         <Route path="/book-appointment/:id" element={<BookAppointment/>}/>
+         <Route path="/appointment-list" element={<AppointmentList/>}/>
+         <Route path="/channeling-home" element={<ChannelingHome/>}/>
 
          <Route path="/foodmenu" element={<FoodMenu/>}/>
          <Route path="/addfood" element={<AddFood/>}/>

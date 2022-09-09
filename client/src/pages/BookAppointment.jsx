@@ -1,4 +1,4 @@
-import * as React from "react";
+import React,{useEffect,useState} from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +15,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import {useState} from "react";
 import moment from "moment";
 import {AccountCircle} from "@mui/icons-material";
 import PersonIcon from '@mui/icons-material/Person';
@@ -25,6 +24,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import axios from "axios";
 import {SERVER_URL} from "../utils/config";
 import Notification from "../utils/Notification";
+import {useParams} from "react-router-dom";
 
 const theme = createTheme({
     palette: {
@@ -39,35 +39,41 @@ const theme = createTheme({
 
 export default function BookAppointment() {
 
-    const [patientname, setPatientname] = useState("")
-    const [mobile, setMobile] = useState("")
+    const {id} = useParams();
+    const [doctor, setDoctor] = useState("")
+    const [Patient, setPatient] = useState("")
+    const [phone, setPhone] = useState("")
     const [email, setEmail] = useState('')
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState("")
-    const [apptdate, setApptdate] = useState("");
+    const [Apptdate, setApptdate] = useState("");
 
     const today = moment().format('YYYY-MM-DDTkk:mm');
 
+    const getAdoc = () =>{
+        axios.get(`${SERVER_URL}/doctor/${id}`).then(res =>{
+            setDoctor(res.data);
+        })
+    }
+    useEffect(()=>{getAdoc()},[])
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // const data = new FormData(event.currentTarget);
-        // console.log({
-        //     email: data.get('email'),
-        // });
-        const newAppnt = {}
+        const docname = doctor.name;
+        let momentDate = moment(Apptdate).format();
+
+        const newAppnt = {docname, Patient,phone,email,age,gender,Apptdate:momentDate};
+        console.log(newAppnt)
+
         await axios.post(`${SERVER_URL}/appointment`,newAppnt).then((res)=>{
             setTimeout(()=>{
                 Notification("success","Appointment fixed");
 
             },1000)
+        }).catch((error)=> {
+            console.log(error);
         })
-        console.log(patientname);
-        console.log(mobile);
-        console.log(email);
-        console.log(age);
-        console.log(gender);
-        console.log(apptdate);
-
     };
 
     return (
@@ -98,9 +104,9 @@ export default function BookAppointment() {
                                         name="patientName"
                                         required
                                         fullWidth
-                                        value={patientname}
+                                        value={Patient}
                                         onChange={(event) => {
-                                            setPatientname(event.target.value)
+                                            setPatient(event.target.value)
                                         }}
                                         id="patientName"
                                         label="Patient Name"
@@ -116,9 +122,9 @@ export default function BookAppointment() {
                                         name="mobileNumber"
                                         required
                                         fullWidth
-                                        value={mobile}
+                                        value={phone}
                                         onChange={(event) => {
-                                            setMobile(event.target.value)
+                                            setPhone(event.target.value)
                                         }}
                                         id="mobileNumber"
                                         label="Mobile Number"
@@ -151,7 +157,7 @@ export default function BookAppointment() {
                                         fullWidth
                                         name="age"
                                         label="Age"
-                                        value={age}
+                                        value={age||""}
                                         onChange={(event) => {
                                             setAge(event.target.value)
                                         }}
@@ -192,7 +198,7 @@ export default function BookAppointment() {
                                 <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
                                     <CalendarMonthIcon sx={{color: 'action.active', mr: 1, my: 0.5}} fontSize="large"/>
                                     <TextField
-                                        value={apptdate}
+                                        value={Apptdate}
                                         onChange={(event)=>{setApptdate(event.target.value)}}
                                         id="datetime-local"
                                         label="Appointment Date & Time"
