@@ -10,4 +10,7 @@ router.get( "/",FoodCtrl.readAllFoods);
 //Get a specific food
 router.get( "/:id",FoodCtrl.getOneFood);
 
+//Get a update a food
+router.put( "/:id",FoodCtrl.UpdateFood);
+
 module.exports = router;
