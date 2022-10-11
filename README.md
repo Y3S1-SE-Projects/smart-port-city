@@ -1,6 +1,5 @@
-# smart-port-city
 # Smart Port City :sparkles:
-### [LIVE PRODUCTION SITE](https://smart-port-city-fullstack.herokuapp.com/)
+### [CLICK ME : LIVE PRODUCTION SITE](https://smart-port-city-fullstack.herokuapp.com/)
 
 ## Use Case Scenario :palm_tree:
 
