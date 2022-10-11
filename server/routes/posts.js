@@ -3,7 +3,7 @@ const Posts = require("../models/posts");
 
 const router = express.Router();
 
-//save posts
+// Save posts requests
 router.post("/post/save", (req, res) => {
   let newPost = new Posts(req.body);
 
@@ -19,7 +19,7 @@ router.post("/post/save", (req, res) => {
   });
 });
 
-//get posts
+// Get posts requests
 router.get("/posts", (req, res) => {
   Posts.find().exec((err, posts) => {
     if (err) {
@@ -34,7 +34,7 @@ router.get("/posts", (req, res) => {
   });
 });
 
-//get specific post
+// Get one post requests
 router.get("/post/:id", (req, res) => {
   let postId = req.params.id;
 
@@ -49,7 +49,7 @@ router.get("/post/:id", (req, res) => {
   });
 });
 
-//update posts
+// Update posts requests
 router.put("/post/update/:id", (req, res) => {
   Posts.findByIdAndUpdate(
     req.params.id,
@@ -68,7 +68,7 @@ router.put("/post/update/:id", (req, res) => {
   );
 });
 
-//delete post
+// Delete post requests
 router.delete("/post/delete/:id", (req, res) => {
   Posts.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
     if (err)
