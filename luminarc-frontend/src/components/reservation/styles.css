@@ -1,0 +1,128 @@
+.headrcontainer{
+ width: 100%;
+height: 100px;
+/* align-items: center; */
+  /* display: flex; */
+  justify-content: center;
+}
+
+
+.logoset{
+  color: #950000;
+  float: left;
+  
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+
+  margin-left: 50px;
+  margin-top: 30px;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.headimg{
+  height: 100px;
+  float: right;
+}
+
+.bookingcontainer{
+    width: 100%;
+   height: 200px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   margin-top: 20px;
+   border: 0;
+   }
+.itemcontainer{
+    width: 100px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /* background-color: #2196F3; */
+    padding: 1px;
+    box-shadow: 5px 5px 20px;
+    border: 0;
+    
+
+  }
+  .grid-item {
+    background-color: #f1f1f1;
+    border: 0;
+    
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    width:250px;
+    height: 120px;
+    
+  }
+
+  .navigatinmenu{
+    width:200px;
+    height: 30px;
+    font-size: large;
+    border: 0;
+  }
+  
+
+  .navubutton{
+    width: 150px;
+    height: 60px;
+    background-color: #950000;
+    border: 0;
+    border-radius: 0;
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+  }
+
+  .headrertext{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .headertext1{
+    color: #757575;
+  }
+
+  .headertext2{
+    color: #950000;
+  }
+
+.roomsetcon{
+  justify-content: center;
+}
+  .roomtypeheadrercontainer{
+
+    width: 700px;
+    height: 50px;
+    /* background-color: #950000; */
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+
+  .roomtypeheadrer{
+
+    width: 700px;
+    height: 50px;
+    background-color: #950000;
+  }
+
+  .roomimg{
+    width: 400px;
+    height: 400px;
+    float: right;
+    margin-right: 150px;
+  }
