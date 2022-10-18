@@ -1,44 +1,106 @@
-import React, { Component } from "react";
+import react, { useEffect, useState } from "react";
+import axios from "axios";
+import Footer from "./Footer";
+import autoTable from "jspdf-autotable";
+import { useParams } from "react-router-dom";
 import { Button } from "reactstrap";
 import jsPDF from "jspdf";
 import logo from "../images/logo.png";
 
-class PDF extends Component {
-  pdfGenerate = () => {
-    var doc = new jsPDF("landscape", "px", "a4", "false");
+const PostDetails = () => {
+  let { id } = useParams();
+
+  const [post, setPost] = useState(null);
+  useEffect(() => {
+    axios.get(`http://localhost:8000/post/${id}`).then((res) => {
+      if (res.data.success) {
+        setPost(res.data.post);
+      }
+    });
+  }, []);
+
+  const pdfGenerate = (post) => {
+    // Creating new PDF document instance
+    const doc = new jsPDF("landscape", "px", "a4", "false");
+    // Adding the logo
     doc.addImage(logo, "PNG", 65, 20, 500, 150);
-    doc.setFont("Helvertica", "Bold");
-    doc.text(60, 200, "Billing Information");
+    doc.setFont("rotobo", "Bold");
+    doc.setFontSize(20);
+    doc.text(30, 180, "Billing Information");
+
+    doc.setFontSize(15);
     doc.text(
-      60,
-      215,
-      "Here are your billing information for the purchase you have made in Smart Port City"
+      30,
+      210,
+      "Here is the Billing information for your purchase in Smart Port City"
     );
     doc.text(
-      60,
+      30,
       230,
       "Please note that the below information is autogenertated"
     );
+    doc.text(30, 320, "Thank you for your purchase. Please came back again !");
 
-    doc.text(60, 280, "Name : Chandur Dissanayake");
-    doc.text(60, 300, "Sporting Event : Olympics");
-    doc.text(60, 320, "Date : 05/01/2001 ");
-    doc.text(60, 340, "Price : 2500");
-    doc.text(60, 360, "Card Number : 000000000000");
-    doc.text(60, 380, "CVV : 411");
-    doc.text(60, 400, "Thank you for your purchase. Please came back again !");
-
-    doc.save("bill.pdf");
+    doc.save("Sports-Bill.pdf");
   };
 
-  render() {
-    return (
-      <div style={{ marginLeft: "100px", marginTop: "-60px" }}>
-        <br />
-        <Button onClick={this.pdfGenerate}>Download Bill</Button>
-      </div>
-    );
-  }
-}
+  return (
+    <>
+      {post && (
+        <div>
+          <div className="container">
+            <div style={{ marginTop: "150px" }}>
+              <h4>{post.topic}</h4>
+              <hr />
+              <dl className="row">
+                <dt className="col-sm-3">Sporting Event</dt>
+                <dd className="col-sm-9">{post.description}</dd>
 
-export default PDF;
+                <dt className="col-sm-3">Type of Sport </dt>
+                <dd className="col-sm-9">{post.postCategory}</dd>
+
+                <dt className="col-sm-3">Date</dt>
+                <dd className="col-sm-9">{post.date}</dd>
+
+                <dt className="col-sm-3">Price</dt>
+                <dd className="col-sm-9">{post.price}</dd>
+
+                <dt className="col-sm-3">Card Number</dt>
+                <dd className="col-sm-9">{post.cardno}</dd>
+
+                <dt className="col-sm-3">CVV</dt>
+                <dd className="col-sm-9">{post.cvv}</dd>
+              </dl>
+              <button
+                className="btn btn-primary"
+                style={{ marginLeft: "0px", marginTop: "15px" }}
+              >
+                <a
+                  href="/table"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Back
+                </a>
+              </button>
+              {post !== undefined && (
+                <div style={{ marginLeft: "100px", marginTop: "-60px" }}>
+                  <br />
+                  <Button
+                    onClick={() => {
+                      pdfGenerate(post);
+                    }}
+                  >
+                    Download Bill
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      <Footer />
+    </>
+  );
+};
+
+export default PostDetails;

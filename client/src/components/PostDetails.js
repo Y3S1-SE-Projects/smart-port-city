@@ -70,7 +70,7 @@ export default class PostDetails extends Component {
                   Back
                 </a>
               </button>
-              <PDF />
+              <PDF name={this.state.topic} />
             </div>
           </div>
         </div>
