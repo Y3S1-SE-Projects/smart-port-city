@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import axios from "axios";
 import Footer from "../components/Footer";
 
-// Defining validation schema for the properties
+// Validation using the Yup object out of the box methods
 const validationSchema = Yup.object({
   topic: Yup.string()
     .typeError("Please enter only letters in the feild")
@@ -80,7 +80,174 @@ const CreatePost = () => {
                 setIsLoading(true);
                 handleSubmit();
               }}
-            ></form>
+            >
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", marginTop: "40px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Full Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="topic"
+                  id="topic"
+                  placeholder="Enter Topic"
+                  onChange={handleChange("topic")}
+                  value={values.topic}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.topic && touched.topic ? (
+                    <div>{errors.topic}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Sporting Event</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="description"
+                  id="description"
+                  placeholder="Enter Description"
+                  onChange={handleChange("description")}
+                  value={values.description}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.description && touched.description ? (
+                    <div>{errors.description}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Type of Sport</label>
+                <select
+                  type="text"
+                  className="form-control"
+                  name="postCategory"
+                  id="postCategory"
+                  onChange={handleChange("postCategory")}
+                  value={values.postCategory}
+                >
+                  <option selected="selected" value="badminton">
+                    Badminton
+                  </option>
+                  <option value="karate">Karate</option>
+                  <option value="basketball">Basketball</option>
+                  <option value="Cricket">Cricket</option>
+                  <option value="Swimming">Swimming</option>
+                  <option value="Chess">Chess</option>
+                  <option value="Esports">Esports</option>
+                </select>
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.postCategory && touched.postCategory ? (
+                    <div>{errors.postCategory}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Date</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  name="date"
+                  id="date"
+                  placeholder="Enter Date"
+                  onChange={handleChange("date")}
+                  value={values.date}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.date && touched.date ? (
+                    <div>{errors.date}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Price</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="price"
+                  id="price"
+                  placeholder="Enter Price"
+                  onChange={handleChange("price")}
+                  value={values.price}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.price && touched.price ? (
+                    <div>{errors.price}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>Card No</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="cardno"
+                  id="cardno"
+                  placeholder="Enter Card Number"
+                  onChange={handleChange("cardno")}
+                  value={values.cardno}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.cardno && touched.cardno ? (
+                    <div>{errors.cardno}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div
+                className="form-group"
+                style={{ marginBottom: "15px", width: 1000 }}
+              >
+                <label style={{ marginBottom: "5px" }}>CVV</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="cvv"
+                  id="cvv"
+                  placeholder="Enter CVV"
+                  onChange={handleChange("cvv")}
+                  value={values.cvv}
+                />
+                <div style={{ font: 12, color: "red" }}>
+                  {errors.cvv && touched.cvv ? <div>{errors.cvv}</div> : null}
+                </div>
+              </div>
+              <button
+                className="btn btn-success"
+                type="submit"
+                style={{ marginTop: "15px" }}
+              >
+                <i className="far fa-check-square"></i>
+                &nbsp; Pay Now
+              </button>
+              <button
+                className="btn btn-primary"
+                style={{ marginLeft: "10px", marginTop: "15px" }}
+              >
+                <a
+                  href="/table"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Back
+                </a>
+              </button>
+            </form>
           )}
         </Formik>
       </div>
