@@ -41,6 +41,32 @@ const PostDetails = () => {
     );
     doc.text(30, 320, "Thank you for your purchase. Please came back again !");
 
+    // Using in built table template
+    autoTable(doc, {
+      startY: 260,
+      head: [
+        [
+          "Name",
+          "Sporting Event",
+          "Sports Category",
+          "Date",
+          "Price",
+          "Card Number",
+          "CVV",
+        ],
+      ],
+      body: [
+        [
+          `${post.topic}`,
+          `${post.description}`,
+          `${post.postCategory}`,
+          `${post.date}`,
+          `${post.price}`,
+          `${post.cardno}`,
+          `${post.cvv}`,
+        ],
+      ],
+    });
     doc.save("Sports-Bill.pdf");
   };
 
