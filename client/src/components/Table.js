@@ -17,7 +17,7 @@ export default class Home extends Component {
 
   retrievePosts() {
     axios
-      .get("https://smart-port-city-fullstack.herokuapp.com/posts")
+      .get("https://smart-port-city-prod.herokuapp.com/posts")
       .then((res) => {
         if (res.data.success) {
           this.setState({
@@ -32,9 +32,7 @@ export default class Home extends Component {
   //Delete function
   onDelete = (id) => {
     axios
-      .delete(
-        `https://smart-port-city-fullstack.herokuapp.com/post/delete/${id}`
-      )
+      .delete(`https://smart-port-city-prod.herokuapp.com/post/delete/${id}`)
       .then((res) => {
         alert("Record Deleted Successfully");
         this.retrievePosts();
@@ -57,7 +55,7 @@ export default class Home extends Component {
     const searchKey = e.currentTarget.value;
 
     axios
-      .get("https://smart-port-city-fullstack.herokuapp.com/posts")
+      .get("https://smart-port-city-prod.herokuapp.com/posts")
       .then((res) => {
         if (res.data.success) {
           this.filterData(res.data.existingPosts, searchKey);

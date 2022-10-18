@@ -58,7 +58,10 @@ const CreatePost = () => {
           onSubmit={async (values) => {
             console.log(values);
             await axios
-              .post("http://localhost:8000/post/save", values)
+              .post(
+                "https://smart-port-city-prod.herokuapp.com/post/save",
+                values
+              )
               .then((res) => {
                 localStorage.setItem("authToken", res.data.token);
                 localStorage.setItem("userRole", res.data.user.role);

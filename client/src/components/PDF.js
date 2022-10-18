@@ -12,11 +12,13 @@ const PostDetails = () => {
 
   const [post, setPost] = useState(null);
   useEffect(() => {
-    axios.get(`http://localhost:8000/post/${id}`).then((res) => {
-      if (res.data.success) {
-        setPost(res.data.post);
-      }
-    });
+    axios
+      .get(`https://smart-port-city-prod.herokuapp.com/post/${id}`)
+      .then((res) => {
+        if (res.data.success) {
+          setPost(res.data.post);
+        }
+      });
   }, []);
 
   const pdfGenerate = (post) => {

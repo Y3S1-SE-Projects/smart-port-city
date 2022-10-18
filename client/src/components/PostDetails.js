@@ -17,7 +17,7 @@ export default class PostDetails extends Component {
     const id = this.props.match.params.id;
 
     axios
-      .get(`https://smart-port-city-fullstack.herokuapp.com/post/${id}`)
+      .get(`https://smart-port-city-prod.herokuapp.com/post/${id}`)
       .then((res) => {
         if (res.data.success) {
           this.setState({
