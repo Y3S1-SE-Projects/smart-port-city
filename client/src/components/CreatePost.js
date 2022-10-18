@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import axios from "axios";
 import Footer from "../components/Footer";
 
-// Validation using the Yup object out of the box methods
+// Defining validation schema for the properties
 const validationSchema = Yup.object({
   topic: Yup.string()
     .typeError("Please enter only letters in the feild")
