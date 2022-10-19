@@ -43,45 +43,38 @@ export default class EditPost extends Component {
 
     console.log(data);
 
-    axios
-      .put(
-        `https://smart-port-city-fullstack.herokuapp.com/post/update/${id}`,
-        data
-      )
-      .then((res) => {
-        if (res.data.success) {
-          alert("Record Updated Successfully");
-          this.setState({
-            topic: "",
-            description: "",
-            postCategory: "",
-            date: "",
-            price: "",
-            cardno: "",
-            cvv: "",
-          });
-        }
-      });
+    axios.put(`http://localhost:8000/post/update/${id}`, data).then((res) => {
+      if (res.data.success) {
+        alert("Record Updated Successfully");
+        this.setState({
+          topic: "",
+          description: "",
+          postCategory: "",
+          date: "",
+          price: "",
+          cardno: "",
+          cvv: "",
+        });
+      }
+    });
   };
 
   componentDidMount() {
     const id = this.props.match.params.id;
 
-    axios
-      .get(`https://smart-port-city-fullstack.herokuapp.com/post/${id}`)
-      .then((res) => {
-        if (res.data.success) {
-          this.setState({
-            topic: res.data.post.topic,
-            description: res.data.post.description,
-            postCategory: res.data.post.postCategory,
-            date: res.data.post.date,
-            price: res.data.post.price,
-            cardno: res.data.post.cardno,
-            cvv: res.data.post.cvv,
-          });
-        }
-      });
+    axios.get(`http://localhost:8000/post/${id}`).then((res) => {
+      if (res.data.success) {
+        this.setState({
+          topic: res.data.post.topic,
+          description: res.data.post.description,
+          postCategory: res.data.post.postCategory,
+          date: res.data.post.date,
+          price: res.data.post.price,
+          cardno: res.data.post.cardno,
+          cvv: res.data.post.cvv,
+        });
+      }
+    });
   }
 
   render() {

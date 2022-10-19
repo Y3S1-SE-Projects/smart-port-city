@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CreatePost from "./components/CreatePost";
 import EditPost from "./components/EditPost";
 import Home from "./components/Table";
-import PostDetails from "./components/PostDetails";
+import PostDetails from "./components/PDF";
 
 import Sports from "./pages/Sports";
 import Main from "./pages/Main";

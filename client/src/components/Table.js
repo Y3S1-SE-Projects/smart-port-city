@@ -16,29 +16,23 @@ export default class Home extends Component {
   }
 
   retrievePosts() {
-    axios
-      .get("https://smart-port-city-fullstack.herokuapp.com/posts")
-      .then((res) => {
-        if (res.data.success) {
-          this.setState({
-            posts: res.data.existingPosts,
-          });
+    axios.get("http://localhost:8000/posts").then((res) => {
+      if (res.data.success) {
+        this.setState({
+          posts: res.data.existingPosts,
+        });
 
-          console.log(this.state.posts);
-        }
-      });
+        console.log(this.state.posts);
+      }
+    });
   }
 
   //Delete function
   onDelete = (id) => {
-    axios
-      .delete(
-        `https://smart-port-city-fullstack.herokuapp.com/post/delete/${id}`
-      )
-      .then((res) => {
-        alert("Record Deleted Successfully");
-        this.retrievePosts();
-      });
+    axios.delete(`http://localhost:8000/post/delete/${id}`).then((res) => {
+      alert("Record Deleted Successfully");
+      this.retrievePosts();
+    });
   };
 
   //Implementing search function
@@ -56,13 +50,11 @@ export default class Home extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios
-      .get("https://smart-port-city-fullstack.herokuapp.com/posts")
-      .then((res) => {
-        if (res.data.success) {
-          this.filterData(res.data.existingPosts, searchKey);
-        }
-      });
+    axios.get("http://localhost:8000/posts").then((res) => {
+      if (res.data.success) {
+        this.filterData(res.data.existingPosts, searchKey);
+      }
+    });
   };
 
   //Displaying data to the front-end
