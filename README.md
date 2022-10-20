@@ -2,7 +2,7 @@
 ### [LIVE PRODUCTION SITE](https://smart-port-city-fullstack.herokuapp.com/)
 
 Below shows a general overview of how each technology used in the project communicates with the components around
-![architecture](architecture.png)
+![architecture](Architecture Diagram.png)
 
 ## Use Case Scenario :palm_tree:
 
