@@ -13,4 +13,7 @@ router.get( "/:id",FoodCtrl.getOneFood);
 //Get a update a food
 router.put( "/:id",FoodCtrl.UpdateFood);
 
+//Get a delete a food
+router.delete( "/:id",FoodCtrl.DeleteFood);
+
 module.exports = router;
