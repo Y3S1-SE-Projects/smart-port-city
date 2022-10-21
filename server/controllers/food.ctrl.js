@@ -66,4 +66,16 @@ const UpdateFood = (req, res) => {
     })
 }
 
-module.exports = {createFood, readAllFoods, getOneFood, UpdateFood}
+//Delete a food
+const DeleteFood = async (req, res) => {
+    console.log(`<-- ${req.method} Request`);
+    Food.findByIdAndDelete({ _id:req.params.id})
+        .then(() => {
+            res.status(200).json("Food has been deleted");
+            console.log(`--> ${req.method} Response`);
+        }).catch((error)=>{
+        res.status(500).json(error);
+    })
+};
+
+module.exports = {createFood, readAllFoods, getOneFood, UpdateFood,DeleteFood}
