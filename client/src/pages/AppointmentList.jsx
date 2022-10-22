@@ -14,7 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button from "@mui/material/Button";
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-// import Notification from "../../utils/Notification";
+ import Notification from "../utils/Notification";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -32,6 +32,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import moment from "moment";
 import EditIcon from '@mui/icons-material/Edit';
+import {Link, useNavigate} from "react-router-dom";
 
 function preventDefault(event) {
     event.preventDefault();
@@ -40,7 +41,8 @@ function preventDefault(event) {
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#033E8A'
+            main: '#033E8A',
+            back: '#e13636'
         },
         secondary:{
             main: '#2B91BF'
@@ -70,6 +72,7 @@ export default function AppointmentList() {
     const handleChange = (event) => {
         setFilter(event.target.value);
     };
+    const navigate = useNavigate();
 
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
@@ -101,17 +104,22 @@ export default function AppointmentList() {
     React.useEffect(()=>{getData()},[0])
 
 
-    const deleteGroup = (id) =>{
+    const deleteAppointment = (id) =>{
 
-        // axios.delete(`${SERVER_URL}/group/${id}`).then(res=>{
-        //     console.log(res.data)
-        //     handleClose2();
-        //     Notification('warning',"Student group is deleted",6000);
-        // }).catch((error)=>{
-        //     Notification('error',"Student group is not deleted",6000);
-        //     handleClose2();
-        //     console.log(error)
-        // })
+        axios.delete(`${SERVER_URL}/appointment/${id}`).then(res=>{
+            console.log(res.data)
+            handleClose2();
+            Notification('warning',"Appointment is deleted",6000);
+        }).catch((error)=>{
+            Notification('error',"Appointment is not deleted",6000);
+            handleClose2();
+            console.log(error)
+        })
+    }
+
+    const UpdateAppointment = (id) =>{
+
+        navigate(`/update-appointment/${id}`)
     }
     const ViewAGroup = (name) =>{
 
@@ -210,12 +218,12 @@ export default function AppointmentList() {
                                 <TableCell>
                                     <Stack direction="row" spacing={1} align="right">
 
-                                        <Button type={"button"} variant="outlined" color="success" startIcon={<EditIcon size="small" />} onClick={()=>{handleToggle2(appointment._id)}}>
-                                            Edit
+                                        <Button type={"button"} variant="outlined" color="success" startIcon={<EditIcon size="small" />} onClick={()=>{UpdateAppointment(appointment._id)}}>
+                                            <Link to={`/update-appointment/${id}`}> Edit</Link>
                                         </Button>
 
                                         <Button type={"button"} variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={()=>{handleToggle2(appointment._id)}}>
-                                            Cancel
+                                            Delete
                                         </Button>
                                     </Stack>
                                 </TableCell>
@@ -260,18 +268,19 @@ export default function AppointmentList() {
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
-                                <DialogTitle id="alert-dialog-title">
+                                <DialogTitle id="alert-dialog-title" sx={{color: 'primary.back'}}>
                                     {"Warning!"}
                                 </DialogTitle>
                                 <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        Do you want to delete this group?
+                                    <DialogContentText id="alert-dialog-description" >
+                                        Are you sure you want to delete this appointment?
+                                        <br/> You can't undo this action.
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleClose2}>Disagree</Button>
-                                    <Button onClick={()=>{deleteGroup(id)}} autoFocus>
-                                        Agree
+                                    <Button sx={{color: 'primary.main'}} onClick={handleClose2}>Cancel</Button>
+                                    <Button sx={{color: 'primary.back'}} onClick={()=>{deleteAppointment(id)}} autoFocus>
+                                        <b>Delete</b>
                                     </Button>
                                 </DialogActions>
                             </Dialog>

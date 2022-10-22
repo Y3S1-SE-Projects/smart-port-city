@@ -89,7 +89,7 @@ export default function ChannelingHome() {
                 </Box>
 
             <Box textAlign="center">
-                <Link to={`/channeling-doctor`} textDecoration='none'>
+                <Link to={`/appointment-list`} textDecoration='none'>
             <Button
                 type="submit"
                 width="60%"
@@ -97,7 +97,7 @@ export default function ChannelingHome() {
                 variant="contained"
                 sx={{mt: 3, mb: 2}}
             >
-                Book Now
+                Appointments
             </Button>
                 </Link>
             </Box>
