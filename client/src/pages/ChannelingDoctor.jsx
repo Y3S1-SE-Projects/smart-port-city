@@ -85,6 +85,10 @@ export default function ChannelingDoctor(){
                     <Typography variant="h5" align="center" color="text.secondary" paragraph>
                         Discover the best doctors available in the smart port city and make an appointment right now as preferred.
                     </Typography>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center">
 
                         <Paper
                             component="form"
@@ -101,6 +105,10 @@ export default function ChannelingDoctor(){
                                 <SearchIcon color="primary" />
                             </IconButton>
                         </Paper>
+                    </Grid>
+                    <Box textAlign="center"  sx={{mr: 3}}>
+
+                    </Box>
                 </Container>
             </Box>
             <Container sx={{ py: 8, bgcolor: '#ECFBFF'}} maxWidth="md" >

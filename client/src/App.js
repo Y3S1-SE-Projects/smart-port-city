@@ -5,6 +5,7 @@ import {ToastContainer} from "react-toastify";
 import ChannelingDoctor from "./pages/ChannelingDoctor";
 import BookAppointment from "./pages/BookAppointment";
 import AppointmentList from "./pages/AppointmentList";
+import UpdateAppointment from "./pages/UpdateAppointment";
 
 import FoodMenu from "./pages/FoodMenu";
 import AddFood from "./pages/AddFood";
@@ -20,6 +21,7 @@ function App() {
          <Route path="/book-appointment/:id" element={<BookAppointment/>}/>
          <Route path="/appointment-list" element={<AppointmentList/>}/>
          <Route path="/channeling-home" element={<ChannelingHome/>}/>
+         <Route path="/update-appointment/:id" element={<UpdateAppointment/>}/>
 
          <Route path="/foodmenu" element={<FoodMenu/>}/>
          <Route path="/addfood" element={<AddFood/>}/>
